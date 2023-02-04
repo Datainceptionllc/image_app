@@ -29,11 +29,20 @@ class Camera:
 
     def get_frame(self):
         if self.camera.isOpened():
+            
             ret, frame = self.camera.read()
+# If found, add object points, image points (after refining them)
+    if ret == True:
 
-            if ret:
-                return (ret, cv.cvtColor(frame, cv.COLOR_BGR2RGB))
-            else:
-                return (ret, None)
-        else:
-            return None
+        return (ret, cv.cvtColor(frame, cv.COLOR_BGR2RGB))
+        # Draw and display the corners
+       
+        cv.imshow('self', self)
+        cv.waitKey(1000)
+else:
+    return (ret, None)
+
+cv.destroyAllWindows()
+
+            
+             
